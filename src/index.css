@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-gray-800 antialiased bg-gray-50;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply text-gray-100 hover:text-white font-medium transition-all duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-emerald-400 after:transition-all after:duration-200 hover:after:w-full;
+  }
+
+  .nav-link-scrolled {
+    @apply text-gray-600 hover:text-emerald-600;
+  }
+
+  .mobile-nav-link {
+    @apply block py-2 text-gray-600 hover:text-emerald-600 font-medium transition-colors duration-200;
+  }
+}
+
+/* Custom Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.4s ease-out forwards;
+}

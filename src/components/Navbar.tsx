@@ -1,0 +1,126 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { ShoppingCart, Search, Menu, Leaf, ChevronDown } from 'lucide-react';
+
+interface Collection {
+  title: string;
+  handle: string;
+}
+
+export default function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [collections, setCollections] = useState<Collection[]>([]);
+  const [cartCount, setCartCount] = useState(0);
+  const pathname = usePathname();
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Fetch collections from Shopify Storefront API
+  useEffect(() => {
+    const fetchCollections = async () => {
+      try {
+        const response = await fetch(`https://${process.env.SHOPIFY_STORE_DOMAIN}/api/2023-04/graphql.json`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Shopify-Storefront-Access-Token': process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN as string,
+          },
+          body: JSON.stringify({
+            query: `
+              {
+                collections(first: 5) {
+                  edges {
+                    node {
+                      title
+                      handle
+                    }
+                  }
+                }
+              }
+            `,
+          }),
+        });
+
+        const data = await response.json();
+        const fetchedCollections = data.data.collections.edges.map((edge: any) => ({
+          title: edge.node.title,
+          handle: edge.node.handle,
+        }));
+        setCollections(fetchedCollections);
+      } catch (error) {
+        console.error('Error fetching collections:', error);
+      }
+    };
+
+    fetchCollections();
+  }, []);
+
+  // Fetch cart count
+  useEffect(() => {
+    // Here you would implement fetching cart data from Shopify
+    setCartCount(3); // Placeholder count, replace with Shopify cart API call
+  }, []);
+
+  return (
+    <nav className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white/95 shadow-lg backdrop-blur-sm py-2' : 'bg-transparent py-4'}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-2 group">
+            <div className="relative">
+              <Leaf className={`w-7 h-7 transition-all duration-300 ${isScrolled ? 'text-emerald-600' : 'text-emerald-400'} group-hover:scale-110 transform`} />
+              <div className={`absolute inset-0 animate-ping rounded-full ${isScrolled ? 'bg-emerald-600' : 'bg-emerald-400'} opacity-20`} />
+            </div>
+            <span className={`text-xl font-bold transition-all duration-300 ${isScrolled ? 'text-gray-900' : 'text-white'}`}>SuppleMe</span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-1">
+            {collections.map((collection) => (
+              <Link
+                key={collection.handle}
+                href={`/collections/${collection.handle}`}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  isScrolled ? 'text-gray-600 hover:text-emerald-600' : 'text-gray-200 hover:text-white'
+                }`}
+              >
+                {collection.title}
+              </Link>
+            ))}
+          </div>
+
+          {/* Right Side Icons */}
+          <div className="flex items-center space-x-4">
+            <button className={`hidden md:flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 ${isScrolled ? 'text-gray-600 hover:text-emerald-600 hover:bg-emerald-50' : 'text-gray-200 hover:text-white hover:bg-white/10'}`}>
+              <Search className="w-5 h-5" />
+            </button>
+
+            <Link href="/cart" className="relative group">
+              <div className={`flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 ${isScrolled ? 'text-gray-600 hover:text-emerald-600 hover:bg-emerald-50' : 'text-gray-200 hover:text-white hover:bg-white/10'}`}>
+                <ShoppingCart className="w-5 h-5" />
+                <span className={`absolute -top-1 -right-1 w-5 h-5 text-xs flex items-center justify-center rounded-full transition-all duration-300 ${isScrolled ? 'bg-emerald-600' : 'bg-emerald-400'} text-white`}>
+                  {cartCount}
+                </span>
+              </div>
+            </Link>
+
+            {/* Mobile Menu Button */}
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className={`md:hidden flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 ${isScrolled ? 'text-gray-600 hover:text-emerald-600 hover:bg-emerald-50' : 'text-gray-200 hover:text-white hover:bg-white/10'}`}>
+              <Menu className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}
