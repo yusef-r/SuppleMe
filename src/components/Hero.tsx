@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { ArrowRight, Leaf, Brain, Shield } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Hero() {
   const [featuredCollectionUrl, setFeaturedCollectionUrl] = useState('/');
@@ -59,13 +60,20 @@ export default function Hero() {
             <p className="text-xl text-gray-300 mb-8 max-w-2xl">
               Discover science-backed supplements designed to enhance your physical and mental well-being.
             </p>
-            <a 
-              href={featuredCollectionUrl} 
+            <Link 
+              href="/shop"
               className="bg-emerald-500 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-600 transition-all duration-300 transform hover:translate-x-1 flex items-center group"
             >
               Explore Products
               <ArrowRight className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
+            </Link>
+            <Link 
+              href="/cart"
+              className="bg-emerald-500 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-600 transition-all duration-300 transform hover:translate-x-1 flex items-center group mt-4"
+            >
+              Go to Cart
+              <ArrowRight className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
           </div>
 
           <div className="grid grid-cols-2 gap-6 animate-fadeIn [animation-delay:200ms]">
