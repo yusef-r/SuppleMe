@@ -23,7 +23,7 @@ export default function Shop() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center text-red-600">
-          <p>Error loading products.</p>
+          <p>Error loading products: {error.message}</p>
           <p className="text-sm mt-2">Please try again later.</p>
         </div>
       </div>
@@ -44,9 +44,21 @@ export default function Shop() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {Array.isArray(products) && products.length > 0 ? (
+            products.map((product) => (
+              <ProductCard 
+                key={product.id} 
+                product={{
+                  ...product,
+                  handle: product.id.split('/').pop() || '' // Generate handle from ID if not available
+                }} 
+              />
+            ))
+          ) : (
+            <div className="col-span-full text-center text-gray-500">
+              No products available at this time.
+            </div>
+          )}
         </div>
       </div>
     </main>
