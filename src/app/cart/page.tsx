@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import CartSummary from '@/components/CartSummary';
 import Breadcrumbs from '@/components/Breadcrumbs';
