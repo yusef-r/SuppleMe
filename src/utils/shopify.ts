@@ -1,5 +1,5 @@
-const SHOPIFY_API_URL = `https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN}/api/2023-04/graphql.json`;
-const STOREFRONT_ACCESS_TOKEN = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN;
+const SHOPIFY_API_URL = `https://${process.env.SHOPIFY_STORE_DOMAIN}/api/2023-04/graphql.json`;
+const STOREFRONT_ACCESS_TOKEN = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
 
 interface ShopifyProduct {
   id: string;
