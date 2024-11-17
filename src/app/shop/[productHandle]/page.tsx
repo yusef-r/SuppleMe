@@ -19,11 +19,14 @@ export default function ProductPage({ params }: { params: { productHandle: strin
           paths={[
             { name: 'Home', href: '/' },
             { name: 'Shop', href: '/shop' },
-            { name: product.name, href: `/shop/${product.handle}` },
+            { name: product.name, href: `/shop/${params.productHandle}` },
           ]}
         />
         <Suspense fallback={<p>Loading...</p>}>
-          <ProductDetails product={product} />
+          <ProductDetails product={{
+            ...product,
+            handle: params.productHandle // Ensure handle is always defined
+          }} />
         </Suspense>
       </div>
     </main>
