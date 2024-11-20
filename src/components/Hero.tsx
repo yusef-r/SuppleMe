@@ -55,10 +55,10 @@ export default function Hero() {
           <div className="text-left animate-fadeIn">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
               Evolving Wellness.
-              <span className="text-emerald-400 block">Empowering You.</span>
+              <span className="text-emerald-400 block">Designed for You.</span>
             </h1>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl">
-              Discover science-backed supplements designed to enhance your physical and mental well-being.
+              Supplements chosen to support where you are today—and elevate where you’re headed.
             </p>
             <Link 
               href="/shop"

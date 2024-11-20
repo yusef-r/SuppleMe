@@ -1,13 +1,11 @@
-"use client";
-
 import { Inter } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'SuppleMe - Evolving Wellness. Empowering You.',
-  description: 'Discover science-backed supplements designed to enhance your physical and mental well-being at SuppleMe.',
+  title: 'SuppleMe - Evolving Wellness. Designed for You.',
+  description: 'Supplements designed to support where you are today—and elevate where you’re headed.',
 };
 
 export default function RootLayout({
