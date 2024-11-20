@@ -85,7 +85,7 @@ export default function FeaturedProducts() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center mb-4">Your Next Steps</h2>
         <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-        Feel balanced. Think clear. Find the right supplements to elevate your wellness journey.
+        Feel balanced. Think clear. Discover the best supplements to elevate your wellness journey.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
