@@ -83,9 +83,9 @@ export default function FeaturedProducts() {
   return (
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center mb-4">Featured Products</h2>
+        <h2 className="text-3xl font-bold text-center mb-4">Your Next Step</h2>
         <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-          Discover our most popular supplements, carefully formulated to support your wellness journey.
+        Feel balanced. Think clear. Supplements chosen with care to elevate your wellness journey.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

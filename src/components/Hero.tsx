@@ -67,13 +67,6 @@ export default function Hero() {
               Explore Products
               <ArrowRight className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
-            <Link 
-              href="/cart"
-              className="bg-emerald-500 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-emerald-600 transition-all duration-300 transform hover:translate-x-1 flex items-center group mt-4"
-            >
-              Go to Cart
-              <ArrowRight className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
           </div>
 
           <div className="grid grid-cols-2 gap-6 animate-fadeIn [animation-delay:200ms]">

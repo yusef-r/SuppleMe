@@ -1,11 +1,11 @@
-import type { Metadata } from 'next';
+"use client";
+
 import { Inter } from 'next/font/google';
 import Navbar from '@/components/Navbar';
-import '@/styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'SuppleMe - Evolving Wellness. Empowering You.',
   description: 'Discover science-backed supplements designed to enhance your physical and mental well-being at SuppleMe.',
 };
