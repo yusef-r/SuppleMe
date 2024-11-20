@@ -10,11 +10,16 @@ interface Collection {
   handle: string;
 }
 
+const collections: Collection[] = [
+  { title: 'Shop', handle: 'shop' },
+  { title: 'Bundles', handle: 'bundles' },
+  { title: 'About', handle: 'about' }
+];
+
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [collections, setCollections] = useState<Collection[]>([]);
+  //const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [cartCount, setCartCount] = useState(0);
   const pathname = usePathname();
 
@@ -25,49 +30,9 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Fetch collections from Shopify Storefront API
-  useEffect(() => {
-    const fetchCollections = async () => {
-      try {
-        const response = await fetch(`https://${process.env.SHOPIFY_STORE_DOMAIN}/api/2023-04/graphql.json`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-Shopify-Storefront-Access-Token': process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN as string,
-          },
-          body: JSON.stringify({
-            query: `
-              {
-                collections(first: 5) {
-                  edges {
-                    node {
-                      title
-                      handle
-                    }
-                  }
-                }
-              }
-            `,
-          }),
-        });
-
-        const data = await response.json();
-        const fetchedCollections = data.data.collections.edges.map((edge: any) => ({
-          title: edge.node.title,
-          handle: edge.node.handle,
-        }));
-        setCollections(fetchedCollections);
-      } catch (error) {
-        console.error('Error fetching collections:', error);
-      }
-    };
-
-    fetchCollections();
-  }, []);
-
   // Fetch cart count
   useEffect(() => {
-    // Here you would implement fetching cart data from Shopify
+    // implement fetching cart data from Shopify
     setCartCount(3); // Placeholder count, replace with Shopify cart API call
   }, []);
 
