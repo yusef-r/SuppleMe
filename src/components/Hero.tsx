@@ -42,7 +42,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex items-center bg-gradient-to-br from-gray-900 via-gray-800 to-emerald-900">
+    <div className="relative min-h-screen flex items-center bg-gradient-to-br from-gray-900 via-gray-800 to-emerald-900 pt-20">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
           backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
