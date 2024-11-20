@@ -58,7 +58,7 @@ export default function Hero() {
               <span className="text-emerald-400 block">Designed for You.</span>
             </h1>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl">
-              Supplements chosen to support the present—and elevate the future.
+              Supplements chosen to support the present—and elevate your future.
             </p>
             <Link 
               href="/shop"
