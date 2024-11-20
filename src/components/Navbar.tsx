@@ -80,11 +80,31 @@ export default function Navbar() {
             </Link>
 
             {/* Mobile Menu Button */}
-            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className={`md:hidden flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 ${isScrolled ? 'text-gray-600 hover:text-emerald-600 hover:bg-emerald-50' : 'text-gray-200 hover:text-white hover:bg-white/10'}`}>
-              <Menu className="w-5 h-5" />
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden"
+              aria-label="Toggle menu"
+            >
+              <Menu className={`w-6 h-6 ${isScrolled ? 'text-gray-600' : 'text-white'}`} />
             </button>
           </div>
         </div>
+
+        {/* Mobile menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg p-4">
+            {collections.map((collection) => (
+              <Link
+                key={collection.handle}
+                href={`/${collection.handle}`}
+                className="block py-2 text-gray-600 hover:text-emerald-600"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {collection.title}
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </nav>
   );
