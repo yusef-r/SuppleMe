@@ -54,7 +54,7 @@ export default function Navbar() {
             {collections.map((collection) => (
               <Link
                 key={collection.handle}
-                href={`/collections/${collection.handle}`}
+                href={`${collection.handle}`}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   isScrolled ? 'text-gray-600 hover:text-emerald-600' : 'text-gray-200 hover:text-white'
                 }`}
