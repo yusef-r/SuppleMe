@@ -6,7 +6,7 @@ import '@/styles/globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'SuppleMe - Evolving Wellness. Designed for You.',
+  title: 'SuppleMe - Designed for You.',
   description: 'Supplements designed to support where you are today—and elevate where you’re headed.',
 };
 
